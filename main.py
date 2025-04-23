@@ -25,6 +25,7 @@ for var in session_variables.keys():
 
 st.set_page_config(page_title="AI Chatbot")
 
+
 @st.fragment()
 def sidebar_content():
     st.session_state[SYSTEM_MESSAGE] = st.text_area(
@@ -37,13 +38,23 @@ def sidebar_content():
         min_value=0.0,
         max_value=2.0,
         value=1.5,
+        help="Setting to control how surprising or predictable the AI's words are.",
     )
     st.session_state[TOP_P] = st.slider(
-        label="Top_p", min_value=0.0, max_value=1.0, value=1.0
+        label="Top_p",
+        min_value=0.0,
+        max_value=1.0,
+        value=1.0,
+        help="Setting to pick from a likely group of words.",
     )
-    st.session_state[TOP_K] = st.number_input(label="Top_k", min_value=1, value=1)
+    st.session_state[TOP_K] = st.number_input(
+        label="Top_k", min_value=1, value=1, help="Choose the most likely tokens."
+    )
     st.session_state[MAX_OUTPUT_TOKENS] = st.number_input(
-        label="Max Output Tokens", min_value=1, value=10000
+        label="Max Output Tokens",
+        min_value=1,
+        value=10000,
+        help="Maximum number of tokens to be returned as output.",
     )
 
 
@@ -51,7 +62,9 @@ st.title("AI Chatbot")
 
 
 st.chat_message("ai").markdown(
-    generate_output(prompt="Say hi to user in order to initiate conversation in a warm and polite way.")
+    generate_output(
+        prompt="Say hi to user in order to initiate conversation in a warm and polite way."
+    )
 )
 
 with st.sidebar:
