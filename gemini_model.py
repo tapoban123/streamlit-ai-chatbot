@@ -11,8 +11,8 @@ def generate_output(
     top_k: float = None,
 ):
     llm = ChatGoogleGenerativeAI(
-        model=ENV_ENUMS.GEMINI_LLM_MODEL,
-        api_key=ENV_ENUMS.GEMINI_API_KEY,
+        model=ENV_ENUMS.GEMINI_LLM_MODEL.value,
+        api_key=ENV_ENUMS.GEMINI_API_KEY.value,
         max_output_tokens=max_output_tokens,
         temperature=temperature,
         top_k=top_k,
