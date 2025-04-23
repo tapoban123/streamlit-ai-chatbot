@@ -6,14 +6,10 @@ from env_enums import ENV_ENUMS
 def generate_output(
     prompt: str,
     temperature: float = 1.5,
+    max_output_tokens: int = None,
     top_p: float = None,
     top_k: float = None,
-    max_output_tokens: int = 10,
 ):
-    print("Temperature:", temperature)
-    print("max output token:", max_output_tokens)
-    print("top_k:", top_k)
-    print("top_p:", top_p)
     llm = ChatGoogleGenerativeAI(
         model=ENV_ENUMS.GEMINI_LLM_MODEL,
         api_key=ENV_ENUMS.GEMINI_API_KEY,

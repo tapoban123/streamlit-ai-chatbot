@@ -23,6 +23,8 @@ for var in session_variables.keys():
         st.session_state[var] = session_variables.get(var)
 
 
+st.set_page_config(page_title="AI Chatbot")
+
 @st.fragment()
 def sidebar_content():
     st.session_state[SYSTEM_MESSAGE] = st.text_area(
@@ -41,13 +43,16 @@ def sidebar_content():
     )
     st.session_state[TOP_K] = st.number_input(label="Top_k", min_value=1, value=1)
     st.session_state[MAX_OUTPUT_TOKENS] = st.number_input(
-        label="Max Output Tokens", min_value=1, value=1024
+        label="Max Output Tokens", min_value=1, value=10000
     )
 
 
 st.title("AI Chatbot")
 
-st.chat_message("ai").markdown(generate_output(prompt="Say hi to user in order to initiate conversation."))
+
+st.chat_message("ai").markdown(
+    generate_output(prompt="Say hi to user in order to initiate conversation in a warm and polite way.")
+)
 
 with st.sidebar:
     sidebar_content()
@@ -72,7 +77,7 @@ def append_to_chat_history(prompt: str):
     st.chat_message("ai").markdown(ai_message)
 
 
-# display chat history
+# Displaying chat history
 for chat in st.session_state[CHAT_HISTORY]:
     st.chat_message(chat[0]).write(chat[1])
 
